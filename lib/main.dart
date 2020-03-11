@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/responsive/device.dart';
 
@@ -39,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   double iconSize;
   double deviceWidth;
   double socialMediaIcons;
+  PageController pageController;
 
   Icon sideMenuIcons(IconData iconName, double iconSize, Color iconColor) {
     return Icon(
@@ -107,7 +109,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: Colors.greenAccent),
                     ),
                   ),
-                 Text("Contact Me")
+                 Container(
+                   decoration: BoxDecoration(
+                     border: Border.all(color: Colors.greenAccent,width: 2.0),
+                     borderRadius: BorderRadius.circular(5.0)
+                   ),
+                   margin: EdgeInsets.only(top:10.0),
+                   padding: EdgeInsets.symmetric(horizontal: deviceWidth/50,vertical: deviceWidth/60),
+                   child: Text("Contact Me",style: TextStyle(color: Colors.greenAccent),))
                 ],
               ),
             ),
@@ -126,30 +135,38 @@ class _MyHomePageState extends State<MyHomePage> {
           height: MediaQuery.of(context).size.height,
           color: Theme.of(context).primaryColor,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
                 "{_HT_}",
                 style: TextStyle(color: Colors.white),
               ),
-              Spacer(),
-              Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child:
-                      sideMenuIcons(Icons.home, iconSize, Colors.greenAccent)),
-              Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: sideMenuIcons(
-                      Icons.person_outline, iconSize, Colors.white)),
-              Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: sideMenuIcons(
-                      Icons.remove_red_eye, iconSize, Colors.white)),
-              Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: sideMenuIcons(
-                      Icons.contact_mail, iconSize, Colors.white)),
-              Spacer(),
+             
+              Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child:
+                        sideMenuIcons(FeatherIcons.home, iconSize, Colors.greenAccent)),
+                Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: sideMenuIcons(
+                        FeatherIcons.user, iconSize, Colors.white)),
+                Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: sideMenuIcons(
+                        FeatherIcons.eye, iconSize, Colors.white)),
+                Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: sideMenuIcons(
+                        FeatherIcons.mail, iconSize, Colors.white)),
+                  ],
+                ),
+              ),
+            
+             
             ],
           ),
         ))
@@ -164,7 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(500),
-            border: Border.all(color: Colors.greenAccent, width: 3.0)),
+            border: Border.all(color: Colors.redAccent, width: 3.0)),
         margin: EdgeInsets.all(10.0),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(500),
@@ -172,87 +189,66 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 50,
               height: 50,
               fit: BoxFit.cover,
-              image: AssetImage("assets/img/my_img.jpg")),
+              image: AssetImage("img/IMG_7869.JPG")),
         ),
       ),
     );
   }
 
   Widget socialIcons(BuildContext context) {
-    return Positioned(
-      bottom: 2,
-      right: 2,
-      child: Row(
+    return  Positioned(
+      bottom: 0,
+      right: 0,
+          child: Row(
+                  children: <Widget>[
+                     IconButton(
+                      onPressed: (){
+                        
+                      },
+                      icon: Icon(FeatherIcons.youtube,size: iconSize-10,)),
+                    IconButton(
+                      onPressed: (){
+
+                      },
+                      icon: Icon(FeatherIcons.twitter,size: iconSize-10)),
+                       IconButton(
+                      onPressed: (){
+                        
+                      },
+                      icon: Icon(FeatherIcons.linkedin,size: iconSize-10)),
+                       IconButton(
+                      onPressed: (){
+                        
+                      },
+                      icon: Icon(FeatherIcons.instagram,size: iconSize-10)),
+                       IconButton(
+                      onPressed: (){
+                        
+                      },
+                      icon: Icon(FeatherIcons.facebook,size: iconSize-10))
+                  ],
+                ),
+    );
+  }
+
+  Widget homePage(BuildContext context){
+    return Row(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: () {
-                html.window.location.href = "https://twitter.com/voidnen";
-              },
-              child: Image(
-                  width: deviceWidth / socialMediaIcons,
-                  height: deviceWidth / socialMediaIcons,
-                  image: AssetImage("assets/img/twitter.png")),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: () {
-                html.window.location.href =
-                    "https://www.facebook.com/hasnen.tai";
-              },
-              child: Image(
-                  width: deviceWidth / socialMediaIcons,
-                  height: deviceWidth / socialMediaIcons,
-                  image: AssetImage("assets/img/facebook.png")),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: () {
-                html.window.location.href =
-                    "https://www.instagram.com/_void_nen_";
-              },
-              child: Image(
-                  width: deviceWidth / socialMediaIcons,
-                  height: deviceWidth / socialMediaIcons,
-                  image: AssetImage("assets/img/insta.png")),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: () {
-                html.window.location.href =
-                    "https://www.youtube.com/channel/UC85hhp-BJCsycB4Y6dwylHw";
-              },
-              child: Image(
-                  fit: BoxFit.cover,
-                  width: deviceWidth / socialMediaIcons,
-                  height: deviceWidth / socialMediaIcons,
-                  image: AssetImage("assets/img/youtube.png")),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              onTap: () {
-                html.window.location.href =
-                    "https://in.linkedin.com/in/hasnen-tai-7b143b143";
-              },
-              child: Image(
-                  fit: BoxFit.cover,
-                  width: deviceWidth / socialMediaIcons,
-                  height: deviceWidth / socialMediaIcons,
-                  image: AssetImage("assets/img/linkedin.png")),
+          Expanded(
+            child: Stack(
+              overflow: Overflow.clip,
+              children: <Widget>[
+                backgroundImage(context),
+                myIntro(context),
+                sideMenu(context),
+                myPic(context),
+                socialIcons(context)
+                
+              ],
             ),
           )
         ],
-      ),
-    );
+      );
   }
 
   @override
@@ -269,23 +265,18 @@ class _MyHomePageState extends State<MyHomePage> {
       socialMediaIcons = currentDeviceMap["social_media_icons_size"];
     });
 
+
+
+
     return Scaffold(
-      body: Row(
+      body: PageView(
+        controller: pageController,
+        scrollDirection: Axis.vertical,
         children: <Widget>[
-          Expanded(
-            child: Stack(
-              overflow: Overflow.clip,
-              children: <Widget>[
-                backgroundImage(context),
-                myIntro(context),
-                sideMenu(context),
-                myPic(context),
-                socialIcons(context)
-              ],
-            ),
-          )
+          homePage(context),
+          homePage(context),
         ],
-      ),
+      )
     );
   }
 }
